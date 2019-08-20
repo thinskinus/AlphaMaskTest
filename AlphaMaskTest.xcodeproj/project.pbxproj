@@ -15,6 +15,7 @@
 		4E06D705230BDAC2001B640E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E06D703230BDAC2001B640E /* LaunchScreen.storyboard */; };
 		4E06D710230BDAC2001B640E /* AlphaMaskTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E06D70F230BDAC2001B640E /* AlphaMaskTestTests.swift */; };
 		4E06D71B230BDAC2001B640E /* AlphaMaskTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E06D71A230BDAC2001B640E /* AlphaMaskTestUITests.swift */; };
+		4E06D729230C0911001B640E /* CircleProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E06D728230C0911001B640E /* CircleProgress.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		4E06D716230BDAC2001B640E /* AlphaMaskTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlphaMaskTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E06D71A230BDAC2001B640E /* AlphaMaskTestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaMaskTestUITests.swift; sourceTree = "<group>"; };
 		4E06D71C230BDAC2001B640E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4E06D728230C0911001B640E /* CircleProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgress.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				4E06D703230BDAC2001B640E /* LaunchScreen.storyboard */,
 				4E06D706230BDAC2001B640E /* Info.plist */,
 				4E06D6FE230BDAC1001B640E /* AlphaMaskTest.xcdatamodeld */,
+				4E06D728230C0911001B640E /* CircleProgress.swift */,
 			);
 			path = AlphaMaskTest;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 			files = (
 				4E06D6FA230BDAC1001B640E /* ViewController.swift in Sources */,
 				4E06D700230BDAC1001B640E /* AlphaMaskTest.xcdatamodeld in Sources */,
+				4E06D729230C0911001B640E /* CircleProgress.swift in Sources */,
 				4E06D6F8230BDAC1001B640E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -437,7 +441,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U677JZD63D;
 				INFOPLIST_FILE = AlphaMaskTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -454,7 +460,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U677JZD63D;
 				INFOPLIST_FILE = AlphaMaskTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
