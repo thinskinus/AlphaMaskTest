@@ -25,10 +25,10 @@
                                 <rect key="frame" x="0.0" y="409" width="414" height="453"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c9J-fl-rtl" customClass="CircleProgressView" customModule="Lenta" customModuleProvider="target">
-                                <rect key="frame" x="57" y="303" width="300" height="300"/>
+                                <rect key="frame" x="58.5" y="304.5" width="297" height="297"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="uEs-yx-pgt"/>
+                                    <constraint firstAttribute="width" constant="297" id="GRA-bM-1q5"/>
                                     <constraint firstAttribute="width" secondItem="c9J-fl-rtl" secondAttribute="height" multiplier="1:1" id="v92-Ec-Ta9"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
