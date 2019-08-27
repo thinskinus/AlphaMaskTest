@@ -30,8 +30,15 @@ class CircleProgressView: UIView {
                return
         }
         
-        let center = CGPoint(x: bounds.midX + offset.x, y: bounds.midY + offset.y)
-        let radius = max(center.x, center.y) + max(abs(offset.x), abs(offset.y)) // - lineWidth / 2
+        let x = bounds.midX
+        let y = bounds.midY
+        let enclosingRadius = sqrt(x*x + y*y)
+        let offsetDistance = sqrt(offset.x*offset.x + offset.y*offset.y)
+        // lineWidth = enclosingRadius * 2
+
+        let center = CGPoint(x: x + offset.x, y: y + offset.y)
+        
+        let radius = enclosingRadius + offsetDistance // - lineWidth / 2
         drawInitialSector(center: center, radius: Double(radius), till: percent, color: lineColor)
         drawFinalSector(center: center, radius: Double(radius), from: percent, color: UIColor.white)
     }

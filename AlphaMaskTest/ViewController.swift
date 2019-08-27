@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let stars = UIImage(named: "stars_pdf") {
+        if let stars = UIImage(named: "star_yel_l") {
             let mask = UIImageView(image: stars)
             progressView.mask = mask
         }
