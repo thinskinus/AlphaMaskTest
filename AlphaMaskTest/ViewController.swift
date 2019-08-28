@@ -16,6 +16,7 @@ class ViewController: UIViewController {
 
     @IBOutlet var progressView: CircleProgressView!
 
+    private let gradientLayer = CAGradientLayer()
     private var completeness: Double = 0
     private var timer: Timer?
     
@@ -54,50 +55,14 @@ class ViewController: UIViewController {
         super.viewWillDisappear(animated)
         timer?.invalidate()
     }
-
-/*
-     
-// THIS DOESN'T WORK
-     
-        let components: [CGFloat] = [0, 255]
-
-        let starCGImage = UIImage(named: "star2")?.cgImage//.copy(colorSpace: CGColorSpaceCreateDeviceGray())
-        if let starCGMask = starCGImage?.copy(maskingColorComponents: components) {
-            let starMask = UIImage(cgImage: starCGMask)
-            centerImageView.mask = UIImageView(image: starMask)
-        }
-
-        let boomCGImage = UIImage(named: "boom")?.cgImage
-        if let boomMask = boomCGImage?.copy(maskingColorComponents: components) {
-            centerImageView.image = UIImage(cgImage: boomMask)
-        }
-     
-        let bgImage = UIImage(named: "bg")?.cgImage
-        if let result = bgImage?.masking(starCGImage!) {
-            centerImageView.image = UIImage(cgImage: result)
-        }
-*/
-
-    
-// THIS WORKS
-    
-//        if let star = UIImage(named: "star") {
-//            topImageView.image = UIImage(named: "bg")
-//            let mask = UIImageView(image: star)
-//            mask.frame = topImageView.frame
-//            topImageView.mask = mask
-//        }
-//
-//        if let result = UIImage(named: "bg")?.imageMasked(with: UIImage(named: "starrr")!) {
-//            bottomImageView.image = result
-//        }
     
     private func addGradientBackground() {
-        let gradientLayer = CAGradientLayer()
         gradientLayer.frame = view.frame
 //        gradientLayer.type = .radial
-        gradientLayer.locations = [NSNumber(value: 0.4), NSNumber(value: 0.5), NSNumber(value: 0.6), NSNumber(value: 0.7), NSNumber(value: 0.96)]
-        gradientLayer.colors = [UIColor.purple.cgColor, UIColor.yellow.cgColor, UIColor.red.cgColor, UIColor.green.cgColor, UIColor.blue.cgColor]
+        gradientLayer.locations = [NSNumber(value: 0.24), NSNumber(value: 0.4), NSNumber(value: 0.47), NSNumber(value: 0.52), NSNumber(value: 0.6), NSNumber(value: 0.8)]
+        gradientLayer.startPoint = CGPoint(x: 0.2, y: 1)
+        gradientLayer.endPoint = CGPoint(x: 0.8, y: 0)
+        gradientLayer.colors = [UIColor.magenta.cgColor, UIColor.purple.cgColor, UIColor.red.cgColor, UIColor.green.cgColor, UIColor.blue.cgColor, UIColor.darkGray.cgColor]
         view.layer.insertSublayer(gradientLayer, at: 0)
     }
     
@@ -110,8 +75,9 @@ class ViewController: UIViewController {
     }
 }
 
-
-extension UIImage {
+// useless
+/*
+ extension UIImage {
     
     func createMask() -> CGImage? {
         guard let maskImageRef = self.cgImage,
@@ -149,4 +115,4 @@ extension UIView {
         }
     }
 }
-
+*/
