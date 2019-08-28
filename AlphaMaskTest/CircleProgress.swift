@@ -97,7 +97,6 @@ class CircleProgressView: UIView {
     private func drawArcBetweenAngles(center: CGPoint, radius: CGFloat, startAngle: Double, endAngle: Double, color: UIColor) {
         // DRAW JUST ARC with defined line width
         let arcPath = UIBezierPath(arcCenter: center, radius: radius, startAngle: CGFloat(startAngle), endAngle: CGFloat(endAngle), clockwise: true)
-//        UIGraphicsGetCurrentContext()?.setShadow(offset: CGSize.init(width: 0, height: 0), blur: 0, color: nil)
         color.setStroke()
         arcPath.lineWidth = wideLineWidth
         arcPath.stroke()
