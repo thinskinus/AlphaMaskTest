@@ -6,16 +6,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AlphaMaskTest/ViewController.swift"
-            timestampString = "588608306.147981"
+            timestampString = "588687902.899738"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
+            landmarkName = "asImage()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AlphaMaskTest/ViewController.swift"
-            timestampString = "588608306.148391"
+            timestampString = "588687902.900638"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
-            landmarkName = "asImage()"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "processPercentValue(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

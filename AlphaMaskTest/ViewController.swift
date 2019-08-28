@@ -15,19 +15,44 @@ class ViewController: UIViewController {
     @IBOutlet var bottomImageView: UIImageView!
 
     @IBOutlet var progressView: CircleProgressView!
+
+    private var completeness: Double = 0
+    private var timer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if let stars = UIImage(named: "star_yel_l") {
-            let mask = UIImageView(image: stars)
-            progressView.mask = mask
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         addGradientBackground()
+
+        progressView.percent = 0
+
+        timer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true) { [weak self] _ in
+            guard let self = self else { return }
+
+            self.completeness += 0.05
+            let percent = self.completeness.truncatingRemainder(dividingBy: 1)
+
+            self.progressView.percent = self.processPercentValue(percent)
+        }
+    }
+    
+    private func processPercentValue(_ percent: Double) -> Double {
+        var newValue = percent
+        if percent > 0, percent < 0.3 {
+            newValue = 0.15 + percent / 2
+        } else if percent > 0.7, percent < 1 {
+            newValue = 0.35 + percent / 2
+        }
+        
+        return newValue
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        timer?.invalidate()
     }
 
 /*
