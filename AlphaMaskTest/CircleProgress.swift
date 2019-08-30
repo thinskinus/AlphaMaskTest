@@ -75,7 +75,7 @@ class CircleProgressView: UIView {
 //        ……
         
         let meanRadians = CircleProgressView.radiansForDegree(meanDegree)
-        let angleDeviation = Double(asin(enclosingRadius / offsetDistance))
+        let angleDeviation = Double(atan(enclosingRadius / offsetDistance))
         let startAngle = meanRadians - angleDeviation
         let endAngle = meanRadians + angleDeviation
         
