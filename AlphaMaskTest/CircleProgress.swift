@@ -11,16 +11,20 @@ import UIKit
 class CircleProgressView: UIView {
     
     static let radiansForPercent = { (percent: Double) in 2 * Double.pi * percent }
+
+    // for conversion (if it would be @IBInspectable angle in degrees)
     static let radiansForDegree = { (degree: Double) in Double.pi * degree / 180 }
+    static let degreesForRadians = { (radians: Double) in radians * 180 / Double.pi } //
 
     enum Angles {
         static let radiansToTop: Double = -Double.pi / 2
+        // for offset to the top (if it would be @IBInspectable angle in degrees)
         static let degreesToTop: Double = -90
     }
     
     @IBInspectable var lineColor: UIColor = UIColor.black
-    @IBInspectable var thinLineWidth: CGFloat = 1
-    @IBInspectable var wideLineWidth: CGFloat = 100
+    var thinLineWidth: CGFloat = 1
+    var wideLineWidth: CGFloat = 100
 
     @IBInspectable
     var percent: Double = 0 {
@@ -29,8 +33,18 @@ class CircleProgressView: UIView {
         }
     }
     
-    @IBInspectable var startDegree: Double = 0
-    @IBInspectable var endDegree: Double = 0
+    //    @IBInspectable var startDegree: Double = 0
+    //    @IBInspectable var endDegree: Double = 0
+
+    // or we can set meanAngle and calculate start and end angles kinda:
+    @IBInspectable var meanDegree: Double = 0
+    //    let angleDeviation = CircleProgressView.degreesForRadians(Double(asin(enclosingRadius / offsetDistance)))
+    //    startDegree = meanAngle - angleDeviation
+    //    endDegree = meanAngle + angleDeviation
+    
+    // or just calculate meanAngle from offset - but still incomplete (see TODO comment)
+
+    // relative coordinates to the center of progress sector's cicle
     @IBInspectable var offset: CGPoint = .zero
     
     override func awakeFromNib() {
@@ -51,30 +65,44 @@ class CircleProgressView: UIView {
         let y = bounds.midY
         let enclosingRadius = sqrt(x*x + y*y)
         let offsetDistance = sqrt(offset.x*offset.x + offset.y*offset.y)
+
+        // calculate angles by offset - all in radians
+        // TODO: need to check zeroing and signs of X and Y
+//        var meanAngle = Double(asin(-offset.y/offset.x))
+//        if offset.y < 0 {
+//            meanAngle = meanAngle + Double.pi
+//        }
+//        ……
+        
+        let meanRadians = CircleProgressView.radiansForDegree(meanDegree)
+        let angleDeviation = Double(asin(enclosingRadius / offsetDistance))
+        let startAngle = meanRadians - angleDeviation
+        let endAngle = meanRadians + angleDeviation
+        
         wideLineWidth = enclosingRadius * 2
         
         let center = CGPoint(x: x + offset.x, y: y + offset.y)
-        
         let radius = max(enclosingRadius, offsetDistance)
-            
-        drawArcInSegment(from: startDegree, till: endDegree, center: center, radius: radius, filledFraction: percent, fillColor: lineColor, unfillColor: UIColor.white)
+        
+        // use *InTop version, if angle in storyboard is set relatively to the top point
+        drawArcInSegment(from: startAngle, till: endAngle, center: center, radius: radius, filledFraction: percent, fillColor: lineColor, unfillColor: UIColor.white)
     }
     
-    /// Draw sector between startAngle and endAngle (in degrees from the top) filling the francion defined by percent with the fillColor, remaining part of sector with bgColor
+    /// Draw sector between startAngle and endAngle (in radians from the top) filling the francion defined by percent with the fillColor, remaining part of sector with bgColor
     ///
     /// - Parameters:
-    ///   - startAngleDegree: start angle of drawing sector in degrees - supposing that zero angle is at the very top
-    ///   - endAngleDegree: end angle of drawing sector in degrees - supposing that zero angle is at the very top
+    ///   - startAngleDegree: start angle of drawing sector in radians - supposing that zero angle is at the very top
+    ///   - endAngleDegree: end angle of drawing sector in radians - supposing that zero angle is at the very top
     ///   - center: center of arc
     ///   - radius: radius of arc
     ///   - filledFraction: fraction of sector that will be colored with fillColor
     ///   - fillColor: color of sector conforming to filledFraction
     ///   - unfillColor: color of the rest of arc - aside from filledFraction
     private func drawArcInSegmentFromTop(from startAngle: Double, till endAngle: Double, center: CGPoint, radius: CGFloat, filledFraction: Double, fillColor: UIColor, unfillColor: UIColor) {
-        drawArcInSegment(from: startAngle + Angles.degreesToTop, till: endAngle + Angles.degreesToTop, center: center, radius: radius, filledFraction: filledFraction, fillColor: fillColor, unfillColor: unfillColor)
+        drawArcInSegment(from: startAngle + Angles.radiansToTop, till: endAngle + Angles.radiansToTop, center: center, radius: radius, filledFraction: filledFraction, fillColor: fillColor, unfillColor: unfillColor)
     }
     
-    /// Draw sector between startAngle and endAngle (in degrees from zero) filling the francion defined by percent with the fillColor, remaining part of sector with bgColor
+    /// Draw sector between startAngle and endAngle (in radians from zero) filling the francion defined by percent with the fillColor, remaining part of sector with bgColor
     ///
     /// - Parameters:
     ///   - startAngleDegree: start angle of drawing sector in degrees - from trigonometric zero angle
@@ -85,10 +113,10 @@ class CircleProgressView: UIView {
     ///   - fillColor: color of sector conforming to filledFraction
     ///   - unfillColor: color of the rest of arc - aside from filledFraction
     private func drawArcInSegment(from startAngle: Double, till endAngle: Double, center: CGPoint, radius: CGFloat, filledFraction: Double, fillColor: UIColor, unfillColor: UIColor) {
-        let filledFromAngle = CircleProgressView.radiansForDegree(startAngle)
-        let unfilledToAngle = CircleProgressView.radiansForDegree(endAngle)
+        let filledFromAngle = startAngle
+        let unfilledToAngle = endAngle
         let gap = endAngle - startAngle
-        let filledToAngle = CircleProgressView.radiansForDegree(startAngle + filledFraction * gap)
+        let filledToAngle = startAngle + filledFraction * gap
         
         drawArcBetweenAngles(center: center, radius: radius, startAngle: filledFromAngle, endAngle: filledToAngle, color: fillColor)
         drawArcBetweenAngles(center: center, radius: radius, startAngle: filledToAngle, endAngle: unfilledToAngle, color: unfillColor)

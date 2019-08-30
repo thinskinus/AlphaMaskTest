@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AlphaMaskTest/ViewController.swift"
-            timestampString = "588688859.787448"
+            timestampString = "588861595.271257"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "112"
@@ -25,13 +25,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AlphaMaskTest/ViewController.swift"
-            timestampString = "588688859.78819"
+            filePath = "AlphaMaskTest/CircleProgress.swift"
+            timestampString = "588861595.277786"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "processPercentValue(_:)"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "drawDividedSector()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AlphaMaskTest/CircleProgress.swift"
+            timestampString = "588861595.278543"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
+            landmarkName = "drawArcInSegment(from:till:center:radius:filledFraction:fillColor:unfillColor:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
