@@ -26,12 +26,28 @@ class CircleProgressView: UIView {
     var thinLineWidth: CGFloat = 1
     var wideLineWidth: CGFloat = 100
 
-    @IBInspectable
-    var percent: Double = 0 {
-        didSet {
+    private var exactFraction: Double = 0
+    private var fractionToDisplayFilled: Double = 0
+ß    var percent: Double {
+        set {
+            exactFraction = newValue
+            fractionToDisplayFilled = processPercentValue(newValue)
             setNeedsDisplay()
         }
+        get {
+            return exactFraction
+        }
     }
+    private func processPercentValue(_ value: Double) -> Double {
+        return value
+    }
+    
+//    @IBInspectable
+//    var percent: Double = 0 {
+//        didSet {
+//            setNeedsDisplay()
+//        }
+//    }
     
     //    @IBInspectable var startDegree: Double = 0
     //    @IBInspectable var endDegree: Double = 0
@@ -85,7 +101,7 @@ class CircleProgressView: UIView {
         let radius = max(enclosingRadius, offsetDistance)
         
         // use *InTop version, if angle in storyboard is set relatively to the top point
-        drawArcInSegment(from: startAngle, till: endAngle, center: center, radius: radius, filledFraction: percent, fillColor: lineColor, unfillColor: UIColor.white)
+        drawArcInSegment(from: startAngle, till: endAngle, center: center, radius: radius, filledFraction: fractionToDisplayFilled, fillColor: lineColor, unfillColor: UIColor.white)
     }
     
     /// Draw sector between startAngle and endAngle (in radians from the top) filling the francion defined by percent with the fillColor, remaining part of sector with bgColor

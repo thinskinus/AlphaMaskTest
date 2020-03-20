@@ -41,13 +41,16 @@ class ViewController: UIViewController {
     }
     
     private func processPercentValue(_ percent: Double) -> Double {
-        var newValue = percent
-        if percent > 0, percent < 0.3 {
-            newValue = 0.15 + percent / 2
-        } else if percent > 0.7, percent < 1 {
-            newValue = 0.35 + percent / 2
-        }
+        var value = Double(round(percent * 100) / 100)
         
+        if value > 0, value < 0.3 {
+            value = 0.15 + value / 2
+        } else if value > 0.7, value < 1 {
+            value = 0.35 + value / 2
+        } else if value > 1 {
+            value = 1
+        }
+
         return newValue
     }
     
